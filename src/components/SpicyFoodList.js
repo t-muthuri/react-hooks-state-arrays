@@ -17,9 +17,18 @@ function SpicyFoodList() {
     console.log(newFood);
   }
 
+  //create a new array that doesn't include a specific element using the .filter method
+  //this returns a new array based on which elements match the criteria in the callback function.
+  function handleClick (id){
+    const newFoodArray=foods.filter((food)=>food.id!==id);
+    setFoods(newFoodArray)
+      console.log (newFoodArray)
+  }
+
   //use .map on our array to generate an array of <li> elements from our array of foods, and display them in the <ul>
   const foodList = foods.map((food) => (
-    <li key={food.id}>
+    //add a click handler to the <li> elements, and pass in the id of the food that is being removed
+    <li key={food.id} onClick={()=>handleClick(food.id)}>
       {food.name} | Heat: {food.heatLevel} | Cuisine: {food.cuisine}
     </li>
   ));
