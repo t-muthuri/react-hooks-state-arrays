@@ -25,6 +25,24 @@ function SpicyFoodList() {
       console.log (newFoodArray)
   }
 
+  function handleLiClick(id) {
+    //.map will iterate through the array and return a new array
+    const newFoodArray = foods.map((food) => {
+      if (food.id === id) {
+    //Whatever value is returned by the callback function that is passed to .map will be added to this new array
+        return {
+    //If the ID of the food iterated over matches the ID of the food updated, return a new food object with the heat level incremented by 1
+    //Otherwise, return the original food object
+          ...food,
+          heatLevel: food.heatLevel + 1,
+        };
+      } else {
+        return food;
+      }
+    });
+    setFoods(newFoodArray);
+  }
+
   //use .map on our array to generate an array of <li> elements from our array of foods, and display them in the <ul>
   const foodList = foods.map((food) => (
     //add a click handler to the <li> elements, and pass in the id of the food that is being removed
@@ -45,7 +63,11 @@ export default SpicyFoodList;
 
 //Deliverables
 // Shows a button to generate a new spicy food
-// When the button is clicked, adds the newly generated food to a list
+// When the button is clicked, adds the newly generated food to a list: spread operator
 // using a state variable to hold an array of spicy foods;
 // using that array to display each spicy food as an <li>; and
 // adding a new spicy food to the array when the button is clicked.
+
+// Add: use the spread operator ([...])
+// Remove: use .filter
+// Update: use .map
